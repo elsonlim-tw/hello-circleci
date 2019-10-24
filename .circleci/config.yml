@@ -1,0 +1,8 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: buildpack-deps:trusty
+      - run:
+          name: "say hi to elson"
+          command: "echo hello elson"
