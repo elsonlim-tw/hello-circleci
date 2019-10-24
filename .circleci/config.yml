@@ -2,11 +2,12 @@ version: 2
 jobs:
   test:
     docker:
-      - image: buildpack-deps:trusty
+      - image: node:10.17.0-alpine
     steps:
+      - checkout
       - run:
-          name: "say hi to elson"
-          command: "echo hello elson"
+          name: "run test"
+          command: "npm test"
 workflows:
   version: 2
   runTest:
