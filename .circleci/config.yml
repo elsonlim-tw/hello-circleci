@@ -3,12 +3,9 @@ jobs:
   test:
     working_directory: ~/app
     docker:
-      - image: node:10.17.0-alpine
+      - image: circleci/node:10.16.3
     steps:
       - checkout
-      - run:
-          name: install-ca-certification
-          command: " apk add ca-certificates"
       - restore_cache:
           key: cache-hello-circleci-{{ checksum "package-lock.json" }}
       - run:
@@ -22,6 +19,7 @@ jobs:
           name: "run test"
           command: "npm test"
   deploy:
+    working_directory: ~/app
     docker:
       - image: buildpack-deps:trusty
     steps:
